@@ -1,0 +1,18 @@
+footer {
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: #ccc;
+    width: 100%;
+    text-align: center;
+    padding: 16px 0;
+}
+
+footer h3 {
+    opacity: .8;
+    font-size: 1.05rem;
+}
+
+footer p {
+    font-size: 0.9rem;
+}

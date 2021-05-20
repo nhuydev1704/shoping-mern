@@ -1,0 +1,185 @@
+.detail {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 50px;
+    font-size: 140%;
+}
+
+.detail img {
+    max-width: 400px;
+    width: 100%;
+    margin: 20px;
+    height: 450px;
+    object-fit: cover;
+    display: block;
+}
+
+.box-detail {
+    max-width: 500px;
+    width: 100%;
+    margin: 10px 20px;
+}
+
+.box-detail .row {
+    display: flex;
+    flex-direction: column;
+}
+
+.box-detail h2 {
+    text-transform: uppercase;
+    color: darkblue;
+    letter-spacing: 2px;
+    font-weight: 2rem;
+}
+
+.box-detail p {
+    line-height: 1.5;
+    margin: 10px 0;
+    opacity: 0.8;
+}
+
+.box-detail .cart {
+    background: #333;
+    color: white;
+    margin-top: 10px;
+    padding: 10px 25px;
+    display: inline-block;
+
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    max-width: 190px;
+} 
+
+.rating i {
+    color: crimson;
+    margin: 5px 0;
+    padding-right: 5px;
+    cursor: pointer;
+}
+
+.rating .star {
+    position: relative;
+}
+
+.rating .star-1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 160px;
+    overflow: hidden;
+}
+
+/* css review */
+.comments h2{
+    text-align: center;
+}
+
+.reviews {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 160px;
+    margin: 10px 0;
+}
+
+.reviews input {
+    display: none;
+}
+
+.reviews label {
+    color: white;
+    margin: 5px 0;
+    padding-right: 5px;
+    cursor: pointer;
+    
+}
+
+.reviews input:not(:checked) ~ label:hover,
+.reviews input:not(:checked) ~ label:hover ~ label {
+    color: crimson;
+}
+
+.reviews input:checked ~ label {
+    color: crimson;
+}
+
+
+/* css input form */
+.form_input {
+    margin: 10px 0;
+}
+
+.form_input input {
+    width: 100%;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    min-height: 40px;
+    outline: none;
+    background: #ccc;
+    border-radius: 10px;
+}
+
+.form_input button {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    width: 150px;
+    margin: 20px 0;
+    border-radius: 8px;
+}
+
+/* css comment */
+.comment_card {
+    border: 2px solid #ccc;
+    padding: 10px;
+    margin: 15px 0;
+    border-radius: 5px;
+}
+
+.comment_card h3 {
+    text-transform: capitalize;
+    color: darkblue;
+}
+
+.comment_card_row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 5px 0;
+    cursor: pointer;
+}
+
+.comment_card span {
+    margin-right: 10px;
+
+}
+
+.comment_card p {
+    color: #444;
+    line-height: 1.5;
+    margin: 10px 0;
+}
+
+.comment_card .nav_comment {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.comment_card .nav_comment p{
+    color: orangered;
+    padding-right: 10px;
+    text-transform: capitalize;
+    cursor: pointer;
+}
+
+.comment_card .nav_comment p:hover{
+    text-decoration: underline;
+}
+
+/* reply comment */
+
+.reply_comment {
+    margin-left: 20px;
+}
