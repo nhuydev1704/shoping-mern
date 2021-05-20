@@ -102,10 +102,6 @@ mongoose.connect(URI, {
 })
 
 
-app.get('/', (req, res) => {
-    res.json({ msg: "Wellcome my channel, " })
-})
-
 
 if(process.env.NODE_ENV === 'production'){
     app.use(express.static('client/build'))
