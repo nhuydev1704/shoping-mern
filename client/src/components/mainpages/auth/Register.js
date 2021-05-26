@@ -28,8 +28,10 @@ function Register() {
         }
     }
     return (
+        <>
         <div className="login-page">
             <form onSubmit={onSubmit}>
+                <Link to="/" className="close--form">X</Link>
                 <h2>ĐĂNG KÝ</h2>
 
                 <input type="text" name="name" required placeholder="Name" value={user.name} onChange={onChangeInput} />
@@ -49,8 +51,11 @@ function Register() {
                     <button type="submit">Đăng Ký</button>
                     <Link to="/login">Đăng Nhập</Link>
                 </div>
+
             </form>
+            
         </div>
+        <div className="modal"></div> </>
     )
 }
 

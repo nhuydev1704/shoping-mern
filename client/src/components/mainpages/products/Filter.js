@@ -18,35 +18,42 @@ function Filter() {
     }
     return (
         <div className="filter_menu">
+            {/* <span>Fliters: </span> */}
             <div className="row">
-                <span>Fliters: </span>
-                <select name="category" value={category} onChange={handleCategory}>
-                    <option value="">All products</option>
-                    {
-                        categories.map(category => (
-                            <option value={"category=" + category._id} key={category._id}>
-                                {category.name}
-                            </option>
-                        ))
-                    }
-                </select>
+                <div className="select">
+                    <select name="category" value={category} onChange={handleCategory}>
+                        <option value="">All products</option>
+                        {
+                            categories.map(category => (
+                                <option value={"category=" + category._id} key={category._id}>
+                                    {category.name}
+                                </option>
+                            ))
+                        }
+                    </select>
+                </div>
             </div>
 
-            <input type="text" value={search}
-                placeholder="Enter your search!"
-                onChange={e => setSearch(e.target.value.toLowerCase())}
-
-            />
-
+            <div className="form-style-4">
+                <label for="field1">
+                    <span></span>
+                        <input type="text" value={search}
+                        onChange={e => setSearch(e.target.value.toLowerCase())}
+                        name="field1" placeholder="Nhập để tìm kiếm"
+                    />
+                </label>
+            </div>
+            {/* <span>Sort By: </span> */}
             <div className="row">
-                <span>Sort By: </span>
-                <select value={sort} onChange={e => setSort(e.target.value)}>
-                    <option value="">Mới Nhất</option>
-                    <option value="sort=oldest">Cũ Nhất</option>
-                    <option value="sort=-sold">Bán chạy nhất</option>
-                    <option value="sort=-price">Giá: Cao-Thấp</option>
-                    <option value="sort=price">Price: Thấp-Cao</option>
-                </select>
+                <div className="select">
+                    <select value={sort} onChange={e => setSort(e.target.value)}>
+                        <option value="" selected>Mới Nhất</option>
+                        <option value="sort=oldest">Cũ Nhất</option>
+                        <option value="sort=-sold">Bán chạy nhất</option>
+                        <option value="sort=-price">Giá: Cao-Thấp</option>
+                        <option value="sort=price">Price: Thấp-Cao</option>
+                    </select>
+                </div>
             </div>
         </div>
     )

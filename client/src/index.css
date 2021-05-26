@@ -14,16 +14,23 @@ code {
     monospace;
 }
 body {
-  background-color: rgba(0, 0, 0, 0.4);
+  background: #334d50;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #cbcaa5, #334d50);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #cbcaa5, #334d50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
 }
 .App {
-  max-width: 1230px;
+  max-width: 1240px;
   min-height: 100vh;
   margin: 0 auto;
   padding: 0 20px;
-  box-shadow: 0 0 8px #eee;
+  /* box-shadow: 0 0 8px #eee; */
   height: 100%;
   width: 100%;
+  background: #334d50;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #cbcaa5, #334d50);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #cbcaa5, #334d50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 
 a {
@@ -76,6 +83,9 @@ button {
   header ul{
    padding: 10px 0;
   }
+  .select {
+    width: 30em;
+  }
 }
 @media (max-width: 720px){
   header ul{
@@ -111,6 +121,9 @@ button {
   .filter_menu .row span{
     display: none;
   }
+  .select {
+    width: 18em;
+  }
 }
 
 @media (max-width: 500px){
@@ -140,5 +153,8 @@ button {
   }
   .create_product .upload{
     margin: 20px 0;
+  }
+  .select {
+    width: 16em;
   }
 }

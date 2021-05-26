@@ -8,8 +8,8 @@ function App() {
   return (
     <DataProvider>
       <Router>
+        <Header />
         <div className="App">
-          <Header />
           <Pages />
         </div>
         <Footer />

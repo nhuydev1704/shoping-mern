@@ -26,16 +26,16 @@
 
 .delete-all span {
     text-transform: uppercase;
-    color: rgb(3, 108, 206);
+    color: rgb(3 206 178);
     letter-spacing: 1.3px;
     font-weight: 500;
     font-size: .9rem;
 }
 
 .delete-all button {
-    border:  1px solid crimson;
+    border:  1px solid rgb(70, 220, 20);
     padding: 10px 25px;
-    color: crimson;
+    color: rgb(70, 220, 20);
     text-transform: uppercase;
     font-weight: 500;
     line-height: 11px;
@@ -52,10 +52,15 @@
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    margin: 15px 0;
+    padding: 30px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #495C70;
 }
 
-.filter_menu select, input {
+.filter_menu span {
+}
+
+.filter_menu  input {
     border: 1px solid #ccc;
     padding: 0 5px;
     height: 30px;
@@ -79,4 +84,96 @@
     border: 1px solid #555;
     text-transform: capitalize;
     font-weight: 500;
+    line-height: 12px;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    outline: 0;
+    box-shadow: none;
+    border: 0 !important;
+    background: #2c3e50;
+    background-image: none;
+  }
+  /* Remove IE arrow */
+  select::-ms-expand {
+    display: none;
+  }
+  /* Custom Select */
+  .select {
+    position: relative;
+    display: flex;
+    width: 14em;
+    height: 2.4em;
+    line-height: 2.8;
+    background: #2c3e50;
+    overflow: hidden;
+    border-radius: .25em;
+  }
+  select {
+    flex: 1;
+    padding: 0 .5em;
+    color: #fff;
+    cursor: pointer;
+  }
+  /* Arrow */
+  .select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 1em;
+    background: #34495e;
+    cursor: pointer;
+    pointer-events: none;
+    -webkit-transition: .25s all ease;
+    -o-transition: .25s all ease;
+    transition: .25s all ease;
+  }
+  /* Transition */
+  .select:hover::after {
+    color: #f39c12;
+  }
+
+  .form-style-4{
+	font-size: 16px;
+	background: #495C70;
+    border-radius: 6px;
+    flex: 1;
+    margin: 0 30px;
+    padding: 0 26px;
+}
+.form-style-4 input[type=text],
+.form-style-4 label
+{
+	font-size: 16px;
+	color: #fff;
+
+}
+.form-style-4 label {
+	display:block;
+	margin-bottom: 10px;
+}
+.form-style-4 label > span{
+	display: inline-block;
+	float: left;
+	width: 150px;
+}
+.form-style-4 input[type=text]
+{
+	background: transparent;
+	border: none;
+	border-bottom: 1px dashed #83A4C5;
+	width: 550px;
+	outline: none;
+	padding: 0px 0px 0px 0px;
+	font-style: italic;
+}
+
+.form-style-4 input[type=text]:focus
+{
+	border-bottom: 1px dashed #D9FFA9;
 }

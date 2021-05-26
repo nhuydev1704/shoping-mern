@@ -1,3 +1,13 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0,.7);
+    
+}
+
 .login-page {
     max-width: 500px;
     border: 1px solid rgb(3, 165, 206);
@@ -5,6 +15,17 @@
     padding: 30px;
     margin: 50px auto;
     background: rgba(255, 255, 255,.9);
+    z-index: 1000;
+    position: relative;
+}
+
+.login-page form .close--form {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: red;
 }
 
 .login-page h2 {

@@ -26,26 +26,31 @@ function Login() {
         }
     }
     return (
-        <div className="login-page">
-            <form onSubmit={onSubmit}>
-                <h2>ĐĂNG NHẬP</h2>
-                <input type="email" name="email" required placeholder="Email" value={user.email} onChange={onChangeInput} />
+        <>
+            <div className="login-page">
+                <form onSubmit={onSubmit}>
+                    <Link to="/" className="close--form">X</Link>
+                    <h2>ĐĂNG NHẬP</h2>
+                    <input type="email" name="email" required placeholder="Email" value={user.email} onChange={onChangeInput} />
 
-                <input type="password"
-                    name="password"
-                    required
-                    placeholder="PassWord"
-                    value={user.password}
-                    onChange={onChangeInput}
-                    autoComplete="on"
-                />
+                    <input type="password"
+                        name="password"
+                        required
+                        placeholder="PassWord"
+                        value={user.password}
+                        onChange={onChangeInput}
+                        autoComplete="on"
+                    />
 
-                <div className="row">
-                    <button type="submit">Đăng Nhập</button>
-                    <Link to="/register">Đăng Ký</Link>
-                </div>
-            </form>
-        </div>
+                    <div className="row">
+                        <button type="submit">Đăng Nhập</button>
+                        <Link to="/register">Đăng Ký</Link>
+                    </div>
+                </form>
+            
+            </div>
+            <div className="modal"></div>
+        </>
     )
 }
 
