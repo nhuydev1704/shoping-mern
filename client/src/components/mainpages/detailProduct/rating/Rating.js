@@ -3,7 +3,7 @@ import React from 'react'
 let rate = 0;
 function Rating({props}) {
     if(props.numReviews) {
-        rate = 100 - (props.rating / props.numReviews * 22)
+        rate = 100 - (props.rating / props.numReviews * 18)
     }else {
         rate = 100 - (props.rating * 15)
     }

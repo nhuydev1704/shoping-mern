@@ -34,7 +34,7 @@ function Filter() {
                 </div>
             </div>
 
-            <div className="form-style-4">
+            <div className="row form-style-4">
                 <label for="field1">
                     <span></span>
                         <input type="text" value={search}

@@ -89,9 +89,9 @@ function Cart() {
                             <h2>
                                 {product.title}
                             </h2>
-                            <h3>{(product.price * product.quantity)} VND</h3>
+                            <h3>Giá: {(product.price * product.quantity).toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</h3>
                             <p>{product.description}</p>
-                            <p>{product.content}</p>
+                            {/* <p>{product.content}</p> */}
                             <div className="amount">
                                 <button onClick={() => decrement(product._id)}>
                                     -

@@ -110,13 +110,13 @@ function DetailProduct() {
                         <h2>
                             {detailProduct.title}
                         </h2>
-                        <h6>
+                        {/* <h6>
                             #id: {detailProduct.product_id}
-                        </h6>
-                        <span>{detailProduct.price} VND</span>
+                        </h6> */}
+                        <span>Giá: {detailProduct.price.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</span>
                         <p>{detailProduct.description}</p>
-                        <p>{detailProduct.content}</p>
-                        <p>Sold: {detailProduct.sold}</p>
+                        {/* <p>{detailProduct.content}</p> */}
+                        <p>Đã bán: {detailProduct.sold}</p>
                         <Link to="/cart"
                             className="cart"
                             onClick={() => addCart(detailProduct)}
@@ -124,14 +124,14 @@ function DetailProduct() {
                             Mua Ngay
                         </Link>
                         <div>
-                            <h3 style={{margin: '10px 0'}}>Xếp hạng: {detailProduct.numReviews} đánh giá</h3>
+                            <h3 style={{margin: '10px 0', fontSize: '1.2rem'}}>Xếp hạng: {detailProduct.numReviews} đánh giá</h3>
                             <Rating props={detailProduct}/>
                         </div>
                     </div>
                 </div>
             </div>
             <div>
-                <h2>Related products</h2>
+                <h2 className="repleated-product">Sản phẩm tương tự</h2>
                 <div className="products">
                     {
                         products.map(product => {

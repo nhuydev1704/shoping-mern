@@ -85,6 +85,16 @@
     text-transform: capitalize;
     font-weight: 500;
     line-height: 12px;
+    background-color: #83c5b4;
+    font-weight: 500;
+    color: black;
+    border-radius: 6px;
+}
+
+.load_more button:hover {
+  opacity: .8;
+  color: white;
+  background-color: #333;
 }
 
 select {

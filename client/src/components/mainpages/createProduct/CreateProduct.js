@@ -174,7 +174,7 @@ function CreateProduct() {
 
                 <div className="row">
                     <label htmlFor="categories">Thể loại: </label>
-                    <select name="category" value={product.category} onChange={handleChangeInput}>
+                    <select className="select-category" name="category" value={product.category} onChange={handleChangeInput}>
                         <option value="">Chọn thể loại</option>
                         {
                             categories.map(category => (

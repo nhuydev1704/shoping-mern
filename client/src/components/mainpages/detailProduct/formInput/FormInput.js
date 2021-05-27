@@ -24,8 +24,8 @@ function FormInput({id, socket, rating,setReply,send,name}) {
    
         if(!username.trim()) return alert('Không được để trống tên.')
         
-        if(contentRef.current.textContent.trim().length < 20)
-            return alert('Nội dung quá ngắn, nội dung lớn hơn 20 kí tự!')
+        if(contentRef.current.textContent.trim().length < 10)
+            return alert('Nội dung quá ngắn, nội dung lớn hơn 10 kí tự!')
     
         const createdAt = new Date().toISOString()
 
@@ -54,7 +54,10 @@ function FormInput({id, socket, rating,setReply,send,name}) {
                     height: '100px',
                     border: '1px solid #ccc',
                     padding: '5px 10px',
-                    outline: 'none'
+                    outline: 'none',
+                    background: '#999',
+                    borderRadius: '4px',
+                    color: 'white'
                 }}
             
             />

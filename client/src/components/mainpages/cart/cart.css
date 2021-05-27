@@ -3,6 +3,13 @@
     border: 1px solid #ccc;
     transform: scaleY(.98);
 }
+.cart h3 {
+    padding-top: 10px;
+    border-bottom: 1px solid;
+    color: #00ffd0a6;
+    font-size: 1.4rem;
+    font-weight: 400;
+}
 
 .amount span {
     color: crimson;
@@ -13,6 +20,15 @@
     width: 40px;
     height: 40px;
     border: 1px solid #777;
+    background: rgb(70 220 20);
+    border-radius: 50%;
+    font-weight: 500;
+    font-size: 1.2rem;
+}
+
+.amount button:hover {
+    opacity: .8;
+    color: white;
 }
 
 .delete {

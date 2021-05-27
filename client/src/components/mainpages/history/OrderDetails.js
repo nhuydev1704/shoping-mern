@@ -60,7 +60,7 @@ function OrderDetails() {
                                 <td><img src={item.images.url} alt="" /></td>
                                 <td>{item.title}</td>
                                 <td>{item.quantity}</td>
-                                <td>{item.price * item.quantity}</td>
+                                <td>{(item.price * item.quantity).toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</td>
                             </tr>
                         ))
                     }
