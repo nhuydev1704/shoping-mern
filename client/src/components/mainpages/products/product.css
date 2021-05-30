@@ -114,7 +114,7 @@ select {
   }
   /* Custom Select */
   .select {
-    position: relative;
+    /* position: relative; */
     display: flex;
     width: 14em;
     height: 2.4em;
@@ -132,7 +132,7 @@ select {
   /* Arrow */
   .select::after {
     content: '\25BC';
-    position: absolute;
+    /* position: absolute; */
     top: 0;
     right: 0;
     padding: 0 1em;

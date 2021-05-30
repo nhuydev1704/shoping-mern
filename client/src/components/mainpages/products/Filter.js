@@ -35,7 +35,7 @@ function Filter() {
             </div>
 
             <div className="row form-style-4">
-                <label for="field1">
+                <label htmlFor="field1">
                     <span></span>
                         <input type="text" value={search}
                         onChange={e => setSearch(e.target.value.toLowerCase())}
@@ -47,7 +47,7 @@ function Filter() {
             <div className="row">
                 <div className="select">
                     <select value={sort} onChange={e => setSort(e.target.value)}>
-                        <option value="" selected>Mới Nhất</option>
+                        <option value="">Mới Nhất</option>
                         <option value="sort=oldest">Cũ Nhất</option>
                         <option value="sort=-sold">Bán chạy nhất</option>
                         <option value="sort=-price">Giá: Cao-Thấp</option>

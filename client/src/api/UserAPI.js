@@ -6,6 +6,8 @@ function UserAPI(token) {
     const [isAdmin, setIsAdmin] = useState(false)
     const [cart, setCart] = useState([])
     const [history, setHistory] = useState([])
+    const [userr, setUserr] = useState([])
+    const [allUser, setAllUser] = useState([])
 
     useEffect(() => {
         if (token) {
@@ -18,6 +20,7 @@ function UserAPI(token) {
                     setIsLogged(true)
                     res.data.role === 1 ? setIsAdmin(true) : setIsAdmin(false)
 
+                    setUserr(res.data)
                     setCart(res.data.cart)
 
                 } catch (err) {
@@ -25,7 +28,22 @@ function UserAPI(token) {
                 }
             }
 
+            // const getAllUser = async () => {
+            //     try {
+            //         const res = await axios.get('/user/all_infor', {
+            //             headers: { Authorization: token }
+            //         })
+
+            //         setAllUser(res.data)
+
+
+            //     } catch (err) {
+            //         alert(err.response.data.msg)
+            //     }
+            // }
+
             getUser();
+            // getAllUser();
         }
     }, [token])
 
@@ -49,12 +67,28 @@ function UserAPI(token) {
         }
     }
 
+    const loadAllUser = async() => {
+                try {
+                    const res = await axios.get('/user/all_infor', {
+                        headers: { Authorization: token }
+                    })
+
+                    setAllUser(res.data)
+
+
+                } catch (err) {
+                }
+    }
+
     return {
         isLogged: [isLogged, setIsLogged],
         isAdmin: [isAdmin, setIsAdmin],
         cart: [cart, setCart],
         addCart: addCart,
-        history: [history, setHistory]
+        history: [history, setHistory],
+        userr: [userr,setUserr],
+        allUser: [allUser, setAllUser],
+        loadAllUser: loadAllUser
     }
 }
 

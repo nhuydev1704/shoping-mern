@@ -4,7 +4,8 @@ const auth = require('../middleware/auth')
 const authAdmin = require('../middleware/authAdmin')
 const fs = require('fs')
 
-
+const uploadImage = require('../middleware/uploadImage')
+const uploadCtrl = require('../controllers/uploadCtrl')
 // we will upload image on cloudinary
 cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
@@ -12,7 +13,7 @@ cloudinary.config({
     api_secret: process.env.CLOUD_API_SECRET
 })
 
-
+router.post('/upload_avatar', uploadImage, auth, uploadCtrl.uploadAvatar)
 //upload image only admin
 router.post("/upload", auth, authAdmin, (req, res) => {
     try {

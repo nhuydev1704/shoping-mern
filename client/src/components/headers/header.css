@@ -1,7 +1,6 @@
 header {
     min-height: 70px;
     width: 100%;
-    overflow: hidden;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
@@ -30,6 +29,13 @@ header ul li:hover{
     opacity: 1;
 }
 
+header ul li img{
+    width: 30px;
+    height: 30px;
+    transform: translateY(10px);
+    border-radius: 50%;
+}
+
 .menu {
     display: none;
 }
@@ -47,4 +53,41 @@ header ul li:hover{
     right: -5px;
     padding: 5px 7px;
     font-size: 10px;
+}
+
+.drop-nav::before {
+    content: "";
+    position: absolute;
+    height: 20px;
+    width: 100%;
+    background: transparent;
+    display: block;
+    bottom: -10px;
+}
+
+
+/* --------- Dropdown ---------- */
+.drop-nav{
+    position: relative;
+    padding: 10px 0;
+}
+.drop-nav a{
+    text-transform: capitalize;
+    overflow: hidden;
+}
+.drop-nav .dropdown{
+    position: absolute;
+    background: #282c34;
+    width: 100%;
+    width: calc(100% + 30px);
+    top: 55px;
+    display: none;
+    z-index: 400;
+}
+.drop-nav .dropdown li{
+    display: block;
+    margin: 10px 0;
+}
+.drop-nav:hover .dropdown{
+    display: block;
 }

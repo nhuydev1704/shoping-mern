@@ -5,6 +5,8 @@ import { GlobalState } from '../../GlobalState'
 import Cart from './icon/cart.svg'
 import Close from './icon/close.svg'
 import Menu from './icon/menu.svg'
+// import {useSelector} from 'react-redux'
+
 
 function Header() {
     const state = useContext(GlobalState)
@@ -12,7 +14,21 @@ function Header() {
     const [isAdmin] = state.userAPI.isAdmin
     const [cart] = state.userAPI.cart
     const [menu, setMenu] = useState(false)
+    const [userr] = state.userAPI.userr
+//
+    // const auth = useSelector(state => state.auth)
+    // const {user} = auth
 
+
+    // const handleLogout = async () => {
+    //     try {
+    //         await axios.get('/user/logout')
+    //         localStorage.removeItem('firstLogin')
+    //         window.location.href = "/";
+    //     } catch (err) {
+    //         window.location.href = "/";
+    //     }
+    // }
     const logoutUser = async () => {
         await axios.get('/user/logout')
 
@@ -20,7 +36,7 @@ function Header() {
 
         window.location.href = "/";
     }
-
+//
     const adminRouter = () => {
         return (
             <>
@@ -34,20 +50,36 @@ function Header() {
         )
     }
 
+    const userLink = () => {
+        return <li className="drop-nav">
+            <Link to="#" className="avatar">
+            <img src={userr.avatar} alt=""/> {userr.name} <i className="fas fa-angle-down"></i>
+            </Link>
+            <ul className="dropdown">
+                <li><Link to="/profile">Profile</Link></li>
+                {/*<li>
+                    <Link to="/history">History</Link>
+                </li>*/}
+                <li>
+                    <Link to="/" onClick={logoutUser}>LogOut</Link>
+                </li>
+            </ul>
+        </li>
+    }
+
     const loggedRouter = () => {
         return (
             <>
                 <li>
                     <Link to="/history">History</Link>
                 </li>
-                <li>
-                    <Link to="/" onClick={logoutUser}>LogOut</Link>
-                </li>
             </>
         )
     }
 
-    const styleMenu = {
+
+    const transForm = {
+        transform: isLogged ? "translateY(-5px)" : 0,
         left: menu ? 0 : "-100%"
     }
     return (
@@ -60,14 +92,22 @@ function Header() {
                     <Link to="/">{isAdmin ? 'Admin' : 'SHOPC4'}</Link>
                 </h1>
             </div>
-            <ul style={styleMenu}>
+            <ul style={transForm}>
                 <li>
                     <Link to="/">{isAdmin ? 'Products' : 'Shop'}</Link>
                 </li>
                 {isAdmin && adminRouter()}
 
-                {
+               {/* {
                     isLogged ? loggedRouter() : <li><Link to="/login">Login ⨁ Register</Link></li>
+                }*/}
+                {
+                    isLogged && loggedRouter()
+                }
+                {
+                    isLogged
+                    ? userLink()
+                    : <li><Link to="/login"><i className="fas fa-user"></i> Sign in</Link></li>
                 }
 
                 {/* <li>

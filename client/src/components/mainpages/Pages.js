@@ -13,6 +13,13 @@ import OrderHistory from './history/OrderHistory'
 import Categories from './categories/Categories'
 import CreateProduct from './createProduct/CreateProduct'
 
+import ActivationEmail from './auth/ActivationEmail'
+import ForgotPass from './auth/ForgotPassword'
+import ResetPass from './auth/ResetPassword'
+
+import Profile from './profile/Profile'
+import EditUser from './profile/EditUser'
+
 function Pages() {
     const state = useContext(GlobalState)
     const [isLooged] = state.userAPI.isLogged
@@ -36,9 +43,13 @@ function Pages() {
                 <Route path="/history/:id" exact component={isLooged ? OrderDetails : NotFound} />
 
 
+                <Route path="/user/activate/:activation_token" component={ActivationEmail} exact />
+                <Route path="/forgot_password" component={isLooged ? NotFound : ForgotPass} exact />
+                <Route path="/user/reset/:token" component={isLooged ? NotFound : ResetPass} exact />
+
+                <Route path="/profile" component={isLooged ? Profile : NotFound} exact />
                 <Route path="/cart" exact component={Cart} />
-
-
+                <Route path="/edit_user/:id" component={isAdmin ? EditUser : NotFound} exact />
 
                 <Route path="*" component={NotFound} />
 
