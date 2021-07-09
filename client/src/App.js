@@ -3,6 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Footer from './components/footers/Footer';
 import Header from './components/headers/Header';
 import Pages from './components/mainpages/Pages';
+import AdsGoogle from './components/adsgoogle/AdsGoogle';
 import { DataProvider } from './GlobalState';
 
 
@@ -50,6 +51,7 @@ function App() {
           <Pages />
         </div>
         <Footer />
+	<AdsGoogle />
       </Router>
     </DataProvider>
   );
