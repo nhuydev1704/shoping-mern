@@ -9,7 +9,7 @@ export default class AdsGoogle extends React.Component {
         return (
             <ins className='adsbygoogle'
                 style={{ display: 'block' }}
-                data-ad-client='ca-pub-4731061272503094'
+                data-ad-client="ca-pub-5575529604012065"
                 // data-ad-slot='12121212'
                 data-ad-format='auto' />
         );
