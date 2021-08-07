@@ -109,8 +109,8 @@ function Cart() {
             }
 
             <div className="total">
-                <h3>Total: ${total/23000}</h3>
-                <PaypalButton total={total/23000}
+                <h3>Total: ${parseInt(total/23000).toFixed(2)}</h3>
+                <PaypalButton total={parseInt(total/23000).toFixed(2)}
                     tranSuccess={tranSuccess}
                 />
             </div>
