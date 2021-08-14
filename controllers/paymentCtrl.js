@@ -17,7 +17,6 @@ const paymentCtrl = {
 
             if (!user) return res.status(400).json({ msg: "User không tồn tại." })
 
-            console.log(req.body)
             const { cart, paymentID, address, priceCheckout } = req.body
             const { _id, name, email } = user
 

@@ -178,7 +178,7 @@ function CreateProduct() {
                         <option value="">Chọn thể loại</option>
                         {
                             categories.map(category => (
-                                <option key={category._id} value={category._id}>{category.name}</option>
+                                <option key={category._id} value={category.name}>{category.name}</option>
                             ))
                         }
 

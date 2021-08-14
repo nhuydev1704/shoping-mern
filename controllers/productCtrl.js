@@ -120,15 +120,15 @@ const productCtrl = {
     },
     reviews: async (req, res) => {
         try {
-            const {rating} = req.body
-            if(rating && rating !== 0) {
+            const { rating } = req.body
+            if (rating && rating !== 0) {
                 const product = await Products.findById(req.params.id)
-                if(!product) return res.status(400).json({ msg: "Sản Phẩm Không Tồn Tại." })
-                
+                if (!product) return res.status(400).json({ msg: "Sản Phẩm Không Tồn Tại." })
+
                 let num = product.numReviews
                 let rate = product.rating
 
-                await Products.findOneAndUpdate({_id: req.params.id}, {
+                await Products.findOneAndUpdate({ _id: req.params.id }, {
                     rating: rate + rating, numReviews: num + 1
                 })
 
