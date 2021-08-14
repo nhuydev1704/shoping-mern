@@ -66,9 +66,11 @@ function Cart() {
     }
 
     const tranSuccess = async (payment) => {
+        console.log(payment)
         const { paymentID, address } = payment;
+        const priceCheckout = total;
 
-        await axios.post('./api/payment', { cart, paymentID, address }, {
+        await axios.post('./api/payment', { cart, paymentID, address, priceCheckout }, {
             headers: { Authorization: token }
         })
 
@@ -109,8 +111,8 @@ function Cart() {
             }
 
             <div className="total">
-                <h3>Total: ${parseInt(total/23000).toFixed(2)}</h3>
-                <PaypalButton total={parseInt(total/23000).toFixed(2)}
+                <h3>Total: ${parseInt(total / 23000).toFixed(2)}</h3>
+                <PaypalButton total={parseInt(total / 23000).toFixed(2)}
                     tranSuccess={tranSuccess}
                 />
             </div>

@@ -29,6 +29,10 @@ const paymentSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    priceCheckout: {
+        type: Number,
+        default: 0
+    }
 
 }, {
     timestamps: true
