@@ -26,7 +26,19 @@ const userSchema = new mongoose.Schema({
     avatar: {
         type: String,
         default: "https://res.cloudinary.com/hunre/image/upload/v1622210328/samples/t%E1%BA%A3i_xu%E1%BB%91ng_2_sf3hpq.jpg"
-    }
+    },
+    totalBuy: {
+        type: Number,
+        default: 0
+    },
+    totalOrder: {
+        type: Number,
+        default: 0
+    },
+    totalProduct: {
+        type: Number,
+        default: 0
+    },
 }, {
     timestamps: true
 })
