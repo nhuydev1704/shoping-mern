@@ -1,6 +1,7 @@
 require('dotenv').config()
 
 const Comments = require('./models/commentModel')
+const Notifications = require('./models/notificationModel')
 
 const express = require('express')
 const mongoose = require('mongoose')
@@ -26,17 +27,17 @@ io.on('connection', socket => {
     // console.log(socket.id + ' connected.')
 
     socket.on('joinRoom', id => {
-        const user = {userId: socket.id, room: id}
+        const user = { userId: socket.id, room: id }
 
         const check = users.every(user => user.userId !== socket.id)
 
-        if(check){
+        if (check) {
             users.push(user)
             socket.join(user.room)
-        }else{
+        } else {
             users.map(user => {
-                if(user.userId === socket.id){
-                    if(user.room !== id){
+                if (user.userId === socket.id) {
+                    if (user.room !== id) {
                         socket.leave(user.room)
                         socket.join(id)
                         user.room = id
@@ -49,27 +50,40 @@ io.on('connection', socket => {
     })
 
     socket.on('createComment', async msg => {
-        const {username, content, product_id, createdAt, rating, send} = msg
+        const { username, content, product_id, createdAt, rating, send } = msg
 
         const newComment = new Comments({
             username, content, product_id, createdAt, rating
         })
 
-        if(send === 'replyComment') {
-            const {_id, username, content, product_id, createdAt, rating} = newComment
+        if (send === 'replyComment') {
+            const { _id, username, content, product_id, createdAt, rating } = newComment
             const comment = await Comments.findById(product_id)
 
-            if(comment) {
-                comment.reply.push({_id, username, content, createdAt, rating})
-            
+            if (comment) {
+                comment.reply.push({ _id, username, content, createdAt, rating })
+
                 await comment.save()
                 io.to(comment.product_id).emit('sendReplyCommentToClient', comment)
             }
-        }else {
+        } else {
             await newComment.save()
-    
+
             io.to(newComment.product_id).emit('sendCommentToClient', newComment)
         }
+    })
+
+    socket.on('createNotification', async noti => {
+        console.log(noti);
+        const { name, action } = noti
+
+        const newNoti = new Notifications({
+            name, action
+        })
+
+        await newNoti.save()
+
+        io.emit('sendNotiToClient', newNoti)
     })
 
     socket.on('disconnect', () => {
@@ -103,7 +117,7 @@ mongoose.connect(URI, {
 
 
 
-if(process.env.NODE_ENV === 'production'){
+if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'))
     app.get('*', (req, res) => {
         res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))

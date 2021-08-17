@@ -10,7 +10,7 @@ import FormInput from './formInput/FormInput'
 import Rating from './rating/Rating'
 
 function DetailProduct() {
-    const {id} = useParams()
+    const { id } = useParams()
     const params = useParams()
     const state = useContext(GlobalState)
     const [products] = state.productsAPI.products
@@ -23,9 +23,7 @@ function DetailProduct() {
     const [rating, setRating] = useState(0)
     const [comments, setComments] = useState([])
     const [page] = useState(1)
-    
 
-    
 
     useEffect(() => {
         if (params.id) {
@@ -43,26 +41,26 @@ function DetailProduct() {
                 setLoading(false)
             })
             .catch(err => console.log(err.response.data.msg))
-    }, [id,page]);
+    }, [id, page]);
 
-//realtime
+    //realtime
     //join room
-    
+
     useEffect(() => {
-        if(socket) {
+        if (socket) {
             socket.emit('joinRoom', id)
         }
-    },[socket,id])
+    }, [socket, id])
 
     useEffect(() => {
-        if(socket) {
+        if (socket) {
             socket.on('sendCommentToClient', msg => {
                 setComments([msg, ...comments])
             })
 
             return () => socket.off('sendCommentToClient')
         }
-    },[socket,comments])
+    }, [socket, comments])
 
     //scroll
     // var pageEnd1 = useRef()
@@ -81,12 +79,12 @@ function DetailProduct() {
     //reply comment
     // Reply Comments
     useEffect(() => {
-        if(socket){
+        if (socket) {
             socket.on('sendReplyCommentToClient', msg => {
                 const newArr = [...comments]
-                
+
                 newArr.forEach(cm => {
-                    if(cm._id === msg._id) {
+                    if (cm._id === msg._id) {
                         cm.reply = msg.reply
                     }
                 })
@@ -95,8 +93,8 @@ function DetailProduct() {
             })
 
             return () => socket.off('sendReplyCommentToClient')
-        } 
-    },[socket, comments])
+        }
+    }, [socket, comments])
 
     console.log(detailProduct)
     if (detailProduct.length === 0) return null;
@@ -124,8 +122,8 @@ function DetailProduct() {
                             Mua Ngay
                         </Link>
                         <div>
-                            <h3 style={{margin: '10px 0', fontSize: '1.2rem'}}>Xếp hạng: {detailProduct.numReviews} đánh giá</h3>
-                            <Rating props={detailProduct}/>
+                            <h3 style={{ margin: '10px 0', fontSize: '1.2rem' }}>Xếp hạng: {detailProduct.numReviews} đánh giá</h3>
+                            <Rating props={detailProduct} />
                         </div>
                     </div>
                 </div>
@@ -147,7 +145,7 @@ function DetailProduct() {
                 <div className="reviews">
                     <input type="radio" name="rate" id="rd-5" onChange={() => setRating(5)} />
                     <label htmlFor="rd-5" className="fas fa-star"></label>
-                    
+
                     <input type="radio" name="rate" id="rd-4" onChange={() => setRating(4)} />
                     <label htmlFor="rd-4" className="fas fa-star"></label>
 
@@ -160,9 +158,9 @@ function DetailProduct() {
                     <input type="radio" name="rate" id="rd-1" onChange={() => setRating(1)} />
                     <label htmlFor="rd-1" className="fas fa-star"></label>
                 </div>
-           
-                <FormInput id={id} socket={socket} rating={rating}/>
-            
+
+                <FormInput id={id} socket={socket} rating={rating} />
+
                 <div className="comments_list">
                     {
                         comments.map(comment => (
@@ -176,7 +174,7 @@ function DetailProduct() {
                     <img src={Load} alt="" />
                 </div>
             }
-        {/* <button ref={pageEnd1} style={{opacity: 0}}>Load more</button> */}
+            {/* <button ref={pageEnd1} style={{opacity: 0}}>Load more</button> */}
         </div>
     )
 }

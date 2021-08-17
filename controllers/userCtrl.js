@@ -4,13 +4,13 @@ const jwt = require('jsonwebtoken')
 const Payments = require('../models/paymentModel')
 const sendMail = require('./sendMail')
 
-const { google } = require('googleapis')//
-const { OAuth2 } = google.auth//
-const fetch = require('node-fetch')//
+const { google } = require('googleapis')
+const { OAuth2 } = google.auth
+const fetch = require('node-fetch')
 
 
-const client = new OAuth2(process.env.MAILING_SERVICE_CLIENT_ID)//
-const { CLIENT_URL } = process.env//
+const client = new OAuth2(process.env.MAILING_SERVICE_CLIENT_ID)
+const { CLIENT_URL } = process.env
 
 const userCtrl = {
     register: async (req, res) => {
