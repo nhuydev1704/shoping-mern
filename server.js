@@ -99,6 +99,7 @@ app.use('/api', require('./routes/upload'))
 app.use('/api', require('./routes/productRouter'))
 app.use('/api', require('./routes/paymentRouter'))
 app.use('/api', require('./routes/commentRouter'))
+app.use('/api', require('./routes/notificationRouter'))
 
 
 //Ket noi toi mongodb
