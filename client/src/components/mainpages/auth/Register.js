@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { GlobalState } from '../../../GlobalState'
 import { showErrMsg, showSuccessMsg } from '../ultils/notification/Notification'
 import { isEmail, isEmpty, isLength, isMatch } from '../ultils/validation/Validation'
-
+import moment from 'moment'
 
 
 const initialState = {
@@ -45,7 +45,7 @@ function Register() {
 
         try {
             socket.emit('createNotification', {
-                name, action: 'register'
+                name, action: 'register', time: moment().format("YYYY-MM-DD HH:mm:ss")
             })
 
             const res = await axios.post('/user/register', {
