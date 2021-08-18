@@ -19,7 +19,6 @@ const initialState = {
 function Register() {
     const state = useContext(GlobalState)
     const socket = state.socket
-    let dateNow = new Date() 
 
     const [user, setUser] = useState(initialState)
 
@@ -45,8 +44,9 @@ function Register() {
             return setUser({ ...user, err: "Mật khẩu nhập lại không khớp.", success: '' })
 
         try {
+            const createdAt = new Date().toISOString()
             socket.emit('createNotification', {
-                name, action: 'register', time: `${dateNow.getHours()} giờ thứ ${dateNow.getDay() + 1} ngày ${dateNow.getDate()} tháng ${dateNow.getMonth() + 1}`
+                name, action: 'register', createdAt
             })
 
             const res = await axios.post('/user/register', {
@@ -56,7 +56,7 @@ function Register() {
             setUser({ ...user, err: '', success: res.data.msg })
         } catch (err) {
             err.response.data.msg &&
-                setUser({ ...user, err: err.response.data.msg, success: '' })
+            setUser({ ...user, err: err.response.data.msg, success: '' })
         }
     }
 
