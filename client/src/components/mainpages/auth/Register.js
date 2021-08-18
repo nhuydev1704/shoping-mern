@@ -1,10 +1,10 @@
-import React, { useContext, useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import axios from 'axios'
-
-import { showErrMsg, showSuccessMsg } from '../ultils/notification/Notification'
-import { isEmpty, isEmail, isLength, isMatch } from '../ultils/validation/Validation'
+import React, { useContext, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { GlobalState } from '../../../GlobalState'
+import { showErrMsg, showSuccessMsg } from '../ultils/notification/Notification'
+import { isEmail, isEmpty, isLength, isMatch } from '../ultils/validation/Validation'
+
 
 
 const initialState = {
@@ -28,18 +28,6 @@ function Register() {
         const { name, value } = e.target
         setUser({ ...user, [name]: value, err: '', success: '' })
     }
-
-    // useEffect(() => {
-    //     console.log(socket)
-    //     if (socket) {
-    //         socket.on('sendNotiToClient', noti => {
-    //             console.log(noti)
-    //         })
-
-    //         return () => socket.off('sendNotiToClient')
-    //     }
-    // }, [socket, callback])
-
 
     const handleSubmit = async e => {
         e.preventDefault()

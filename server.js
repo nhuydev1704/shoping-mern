@@ -74,7 +74,6 @@ io.on('connection', socket => {
     })
 
     socket.on('createNotification', async noti => {
-        console.log(noti);
         const { name, action } = noti
 
         const newNoti = new Notifications({
