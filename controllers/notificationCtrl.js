@@ -46,7 +46,7 @@ const NotificationCtrl = {
 		} catch(err) {
 			return res.status(500).json({msg: err.message});
 		}
-	}
+	},
 
 	deleteNotifications: async (req, res) => {
 		try {
