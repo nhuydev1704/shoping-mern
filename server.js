@@ -74,7 +74,7 @@ io.on('connection', socket => {
     })
 
     socket.on('createNotification', async noti => {
-        const { name, action } = noti
+        const { name, action, time } = noti
 
         const newNoti = new Notifications({
             name, action
@@ -82,7 +82,7 @@ io.on('connection', socket => {
 
         await newNoti.save()
 
-        io.emit('sendNotiToClient', newNoti)
+        io.emit('sendNotiToClient', {...newNoti, time})
     })
 
     socket.on('disconnect', () => {
