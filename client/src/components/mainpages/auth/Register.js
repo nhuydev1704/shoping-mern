@@ -46,7 +46,7 @@ function Register() {
 
         try {
             socket.emit('createNotification', {
-                name, action: 'register', time: `${date.getHours()} giờ thứ ${date.getDay() + 1} này ${dateNow.getDate()} tháng ${dateNow.getMonth() + 1}`
+                name, action: 'register', time: `${date.getHours()} giờ thứ ${date.getDay() + 1} ngày ${dateNow.getDate()} tháng ${dateNow.getMonth() + 1}`
             })
 
             const res = await axios.post('/user/register', {
