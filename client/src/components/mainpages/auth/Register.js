@@ -19,6 +19,7 @@ const initialState = {
 function Register() {
     const state = useContext(GlobalState)
     const socket = state.socket
+    let dateNow = new Date() 
 
     const [user, setUser] = useState(initialState)
 
@@ -45,7 +46,7 @@ function Register() {
 
         try {
             socket.emit('createNotification', {
-                name, action: 'register', time: moment().format("YYYY-MM-DD HH:mm:ss")
+                name, action: 'register', time: `${date.getHours()} giờ thứ ${date.getDay() + 1} này ${dateNow.getDate()} tháng ${dateNow.getMonth() + 1}`
             })
 
             const res = await axios.post('/user/register', {
