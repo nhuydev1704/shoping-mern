@@ -19,7 +19,11 @@ app.use(fileUpLoad({
 }))
 
 const http = require('http').createServer(app)
-const io = require('socket.io')(http)
+const io = require('socket.io')(http, {
+    cors: {
+        origin: "*"
+    }
+})
 
 //soketio
 let users = [];
