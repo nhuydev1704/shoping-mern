@@ -15,7 +15,7 @@ function Header() {
     const [cart] = state.userAPI.cart
     const [menu, setMenu] = useState(false)
     const [userr] = state.userAPI.userr
-//
+    //
     // const auth = useSelector(state => state.auth)
     // const {user} = auth
 
@@ -36,15 +36,15 @@ function Header() {
 
         window.location.href = "/";
     }
-//
+    //
     const adminRouter = () => {
         return (
             <>
                 <li>
-                    <Link to="/create_product">Create Product</Link>
+                    <Link to="/create_product">Thêm sản phẩm</Link>
                 </li>
                 <li>
-                    <Link to="/category">Categories</Link>
+                    <Link to="/category">Danh mục</Link>
                 </li>
             </>
         )
@@ -53,15 +53,15 @@ function Header() {
     const userLink = () => {
         return <li className="drop-nav">
             <Link to="#" className="avatar">
-            <img src={userr.avatar} alt=""/> {userr.name} <i className="fas fa-angle-down"></i>
+                <img src={userr.avatar} alt="" /> {userr.name} <i className="fas fa-angle-down"></i>
             </Link>
             <ul className="dropdown">
-                <li><Link to="/profile">Profile</Link></li>
+                <li><Link to="/profile">Thông tin</Link></li>
                 {/*<li>
                     <Link to="/history">History</Link>
                 </li>*/}
                 <li>
-                    <Link to="/" onClick={logoutUser}>LogOut</Link>
+                    <Link to="/" onClick={logoutUser}>Đăng xuất</Link>
                 </li>
             </ul>
         </li>
@@ -71,7 +71,7 @@ function Header() {
         return (
             <>
                 <li>
-                    <Link to="/history">History</Link>
+                    <Link to="/history">Lịch sử</Link>
                 </li>
             </>
         )
@@ -94,11 +94,11 @@ function Header() {
             </div>
             <ul style={transForm}>
                 <li>
-                    <Link to="/">{isAdmin ? 'Products' : 'Shop'}</Link>
+                    <Link to="/">{isAdmin ? 'Sản phẩm' : 'Cửa hàng'}</Link>
                 </li>
                 {isAdmin && adminRouter()}
 
-               {/* {
+                {/* {
                     isLogged ? loggedRouter() : <li><Link to="/login">Login ⨁ Register</Link></li>
                 }*/}
                 {
@@ -106,8 +106,8 @@ function Header() {
                 }
                 {
                     isLogged
-                    ? userLink()
-                    : <li><Link to="/login"><i className="fas fa-user"></i> Sign in</Link></li>
+                        ? userLink()
+                        : <li><Link to="/login"><i className="fas fa-user"></i> Đăng nhập</Link></li>
                 }
 
                 {/* <li>

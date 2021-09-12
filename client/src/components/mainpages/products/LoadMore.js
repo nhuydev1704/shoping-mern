@@ -10,7 +10,7 @@ function LoadMore() {
         <div className="load_more">
             {
                 result < page * 8 ? "" :
-                    <button onClick={() => setPage(page + 1)}>Load more</button>
+                    <button onClick={() => setPage(page + 1)}>Tải thêm</button>
             }
         </div>
     )

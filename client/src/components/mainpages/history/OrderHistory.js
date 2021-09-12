@@ -38,7 +38,7 @@ function OrderHistory() {
             <table>
                 <thead>
                     <tr>
-                        <th>Payment ID</th>
+                        <th>Email</th>
                         <th>Ngày Đặt</th>
                         <th></th>
                     </tr>
@@ -47,7 +47,7 @@ function OrderHistory() {
                     {
                         history.map(items => (
                             <tr key={items._id}>
-                                <td>{items.paymentID}</td>
+                                <td>{items.email}</td>
                                 <td>{new Date(items.createdAt).toLocaleDateString()}</td>
                                 <td><Link to={`/history/${items._id}`}>Xem</Link></td>
                             </tr>

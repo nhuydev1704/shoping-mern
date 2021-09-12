@@ -80,7 +80,7 @@ function Cart() {
     }
 
     if (cart.length === 0)
-        return <h2 style={{ textAlign: "center", fontSize: "5rem" }}>Giỏ hàng trống...</h2>
+        return <h2 style={{ textAlign: "center", fontSize: "5rem" }}>Đăng nhập để mua hàng</h2>
     return (
         <div>
             {
@@ -112,9 +112,11 @@ function Cart() {
 
             <div className="total">
                 <h3>Total: ${parseInt(total / 23000).toFixed(2)}</h3>
-                <PaypalButton total={parseInt(total / 23000).toFixed(2)}
-                    tranSuccess={tranSuccess}
-                />
+                <div>
+                    <PaypalButton total={parseInt(total / 23000).toFixed(2)}
+                        tranSuccess={tranSuccess}
+                    />
+                </div>
             </div>
         </div>
     )

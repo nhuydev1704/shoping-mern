@@ -56,13 +56,13 @@ function Register() {
             setUser({ ...user, err: '', success: res.data.msg })
         } catch (err) {
             err.response.data.msg &&
-            setUser({ ...user, err: err.response.data.msg, success: '' })
+                setUser({ ...user, err: err.response.data.msg, success: '' })
         }
     }
 
     return (
         <div className="login_page">
-            <h2>Register</h2>
+            <h2>Đăng ký</h2>
             {err && showErrMsg(err)}
             {success && showSuccessMsg(success)}
 

@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import {showErrMsg, showSuccessMsg} from '../ultils/notification/Notification'
+import { showErrMsg, showSuccessMsg } from '../ultils/notification/Notification'
 // import {dispatchLogin} from '../../../redux/actions/authAction'
 // import {useDispatch} from 'react-redux'
 import { GoogleLogin } from 'react-google-login';
@@ -24,11 +24,11 @@ function Login() {
     const [user, setUser] = useState(initialState)
     // const dispatch = useDispatch()
     // const history = useHistory()
-    const {email, password, err, success} = user
+    const { email, password, err, success } = user
 
     const handleChangeInput = e => {
         const { name, value } = e.target;
-        setUser({...user, [name]:value, err: '', success: ''})
+        setUser({ ...user, [name]: value, err: '', success: '' })
 
     }
 
@@ -43,7 +43,7 @@ function Login() {
             alert(err.response.data.msg)
         }
     }
-    
+
     // const handleSubmit = async e => {
     //     e.preventDefault()
     //     try {
@@ -63,31 +63,31 @@ function Login() {
 
     const responseGoogle = async (response) => {
         try {
-            const res = await axios.post('/user/google_login', {tokenId: response.tokenId})
-            setUser({...user, error:'', success: res.data.msg})
+            const res = await axios.post('/user/google_login', { tokenId: response.tokenId })
+            setUser({ ...user, error: '', success: res.data.msg })
             localStorage.setItem('firstLogin', true)
 
             // dispatch(dispatchLogin())
             window.location.href = '/'
         } catch (err) {
-            err.response.data.msg && 
-            setUser({...user, err: err.response.data.msg, success: ''})
+            err.response.data.msg &&
+                setUser({ ...user, err: err.response.data.msg, success: '' })
         }
     }
 
     const responseFacebook = async (response) => {
         try {
-            const {accessToken, userID} = response
-            const res = await axios.post('/user/facebook_login', {accessToken, userID})
+            const { accessToken, userID } = response
+            const res = await axios.post('/user/facebook_login', { accessToken, userID })
 
-            setUser({...user, error:'', success: res.data.msg})
+            setUser({ ...user, error: '', success: res.data.msg })
             localStorage.setItem('firstLogin', true)
 
 
             window.location.href = '/'
         } catch (err) {
-            err.response.data.msg && 
-            setUser({...user, err: err.response.data.msg, success: ''})
+            err.response.data.msg &&
+                setUser({ ...user, err: err.response.data.msg, success: '' })
         }
     }
     return (
@@ -112,12 +112,12 @@ function Login() {
         //                 <Link to="/register">Đăng Ký</Link>
         //             </div>
         //         </form>
-            
+
         //     </div>
         //     <div className="modal"></div>}
         // </>
         <div className="login_page">
-            <h2>Login</h2>
+            <h2>Đăng nhập</h2>
             {err && showErrMsg(err)}
             {success && showSuccessMsg(success)}
 
@@ -125,13 +125,13 @@ function Login() {
                 <div>
                     <label htmlFor="email">Địa chỉ Email</label>
                     <input type="text" placeholder="Địa chỉ Email" id="email"
-                    value={email} name="email" onChange={handleChangeInput} />
+                        value={email} name="email" onChange={handleChangeInput} />
                 </div>
 
                 <div>
                     <label htmlFor="password">Mật khẩu</label>
                     <input type="password" placeholder="Mật khẩu" id="password"
-                    value={password} name="password" onChange={handleChangeInput} />
+                        value={password} name="password" onChange={handleChangeInput} />
                 </div>
 
                 <div className="row">
@@ -149,12 +149,12 @@ function Login() {
                     onSuccess={responseGoogle}
                     cookiePolicy={'single_host_origin'}
                 />
-                
+
                 <FacebookLogin
-                appId="145511920952572"
-                autoLoad={false}
-                fields="name,email,picture"
-                callback={responseFacebook} 
+                    appId="145511920952572"
+                    autoLoad={false}
+                    fields="name,email,picture"
+                    callback={responseFacebook}
                 />
 
             </div>

@@ -22,7 +22,7 @@ function Filter() {
             <div className="row">
                 <div className="select">
                     <select name="category" value={category} onChange={handleCategory}>
-                        <option value="">All products</option>
+                        <option value="">Tất cả sản phẩm</option>
                         {
                             categories.map(category => (
                                 <option value={"category=" + category._id} key={category._id}>
@@ -37,7 +37,7 @@ function Filter() {
             <div className="row form-style-4">
                 <label htmlFor="field1">
                     <span></span>
-                        <input type="text" value={search}
+                    <input type="text" value={search}
                         onChange={e => setSearch(e.target.value.toLowerCase())}
                         name="field1" placeholder="Nhập để tìm kiếm"
                     />
