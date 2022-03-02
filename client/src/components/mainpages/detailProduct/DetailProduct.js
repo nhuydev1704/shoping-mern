@@ -1,46 +1,44 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { useParams } from 'react-router'
-import { Link } from 'react-router-dom'
-import { GlobalState } from '../../../GlobalState'
-import Load from '../detailProduct/loading.gif'
-import { getData } from '../ultils/FetchData'
-import ProductItem from '../ultils/ProductItem/ProductItem'
-import CommentItem from './commentItem/CommentItem'
-import FormInput from './formInput/FormInput'
-import Rating from './rating/Rating'
+import React, { useContext, useEffect, useState } from 'react';
+import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
+import { GlobalState } from '../../../GlobalState';
+import Load from '../detailProduct/loading.gif';
+import { getData } from '../ultils/FetchData';
+import ProductItem from '../ultils/ProductItem/ProductItem';
+import CommentItem from './commentItem/CommentItem';
+import FormInput from './formInput/FormInput';
+import Rating from './rating/Rating';
 
 function DetailProduct() {
-    const { id } = useParams()
-    const params = useParams()
-    const state = useContext(GlobalState)
-    const [products] = state.productsAPI.products
-    const [detailProduct, setDetailProduct] = useState([])
-    const addCart = state.userAPI.addCart
-    const socket = state.socket
+    const { id } = useParams();
+    const params = useParams();
+    const state = useContext(GlobalState);
+    const [products] = state.productsAPI.products;
+    const [detailProduct, setDetailProduct] = useState([]);
+    const addCart = state.userAPI.addCart;
+    const socket = state.socket;
 
-
-    const [loading, setLoading] = useState(false)
-    const [rating, setRating] = useState(0)
-    const [comments, setComments] = useState([])
-    const [page] = useState(1)
-
+    const [loading, setLoading] = useState(false);
+    const [rating, setRating] = useState(0);
+    const [comments, setComments] = useState([]);
+    const [page] = useState(1);
 
     useEffect(() => {
         if (params.id) {
-            products.forEach(product => {
-                if (product._id === params.id) setDetailProduct(product)
-            })
+            products.forEach((product) => {
+                if (product._id === params.id) setDetailProduct(product);
+            });
         }
-    }, [params.id, products])
+    }, [params.id, products]);
 
     useEffect(() => {
-        setLoading(true)
+        setLoading(true);
         getData(`/api/comments/${id}?limit=${page * 6}`)
-            .then(res => {
-                setComments(r => r = res.data.comments)
-                setLoading(false)
+            .then((res) => {
+                setComments((r) => (r = res.data.comments));
+                setLoading(false);
             })
-            .catch(err => console.log(err.response.data.msg))
+            .catch((err) => console.log(err.response.data.msg));
     }, [id, page]);
 
     //realtime
@@ -48,19 +46,19 @@ function DetailProduct() {
 
     useEffect(() => {
         if (socket) {
-            socket.emit('joinRoom', id)
+            socket.emit('joinRoom', id);
         }
-    }, [socket, id])
+    }, [socket, id]);
 
     useEffect(() => {
         if (socket) {
-            socket.on('sendCommentToClient', msg => {
-                setComments([msg, ...comments])
-            })
+            socket.on('sendCommentToClient', (msg) => {
+                setComments([msg, ...comments]);
+            });
 
-            return () => socket.off('sendCommentToClient')
+            return () => socket.off('sendCommentToClient');
         }
-    }, [socket, comments])
+    }, [socket, comments]);
 
     //scroll
     // var pageEnd1 = useRef()
@@ -80,49 +78,47 @@ function DetailProduct() {
     // Reply Comments
     useEffect(() => {
         if (socket) {
-            socket.on('sendReplyCommentToClient', msg => {
-                const newArr = [...comments]
+            socket.on('sendReplyCommentToClient', (msg) => {
+                const newArr = [...comments];
 
-                newArr.forEach(cm => {
+                newArr.forEach((cm) => {
                     if (cm._id === msg._id) {
-                        cm.reply = msg.reply
+                        cm.reply = msg.reply;
                     }
-                })
+                });
 
-                setComments(newArr)
-            })
+                setComments(newArr);
+            });
 
-            return () => socket.off('sendReplyCommentToClient')
+            return () => socket.off('sendReplyCommentToClient');
         }
-    }, [socket, comments])
+    }, [socket, comments]);
 
-    console.log(detailProduct)
+    console.log(detailProduct);
     if (detailProduct.length === 0) return null;
     return (
-
         <div>
             <div className="detail">
                 <img src={detailProduct.images.url} alt="anhdep" />
                 <div className="box-detail">
                     <div className="row">
-                        <h2>
-                            {detailProduct.title}
-                        </h2>
+                        <h2>{detailProduct.title}</h2>
                         {/* <h6>
                             #id: {detailProduct.product_id}
                         </h6> */}
-                        <span>Giá: {detailProduct.price.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</span>
+                        <span>
+                            Giá: {detailProduct.price.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}
+                        </span>
                         <p>{detailProduct.description}</p>
                         {/* <p>{detailProduct.content}</p> */}
                         <p>Đã bán: {detailProduct.sold}</p>
-                        <Link to="/cart"
-                            className="cart"
-                            onClick={() => addCart(detailProduct)}
-                        >
+                        <Link to="/cart" className="cart" onClick={() => addCart(detailProduct)}>
                             Mua Ngay
                         </Link>
                         <div>
-                            <h3 style={{ margin: '10px 0', fontSize: '1.2rem' }}>Xếp hạng: {detailProduct.numReviews} đánh giá</h3>
+                            <h3 style={{ margin: '10px 0', fontSize: '1.2rem' }}>
+                                Xếp hạng: {detailProduct.numReviews} đánh giá
+                            </h3>
                             <Rating props={detailProduct} />
                         </div>
                     </div>
@@ -130,13 +126,12 @@ function DetailProduct() {
             </div>
             <div>
                 <h2 className="repleated-product">Sản phẩm tương tự</h2>
-                <div className="products">
-                    {
-                        products.map(product => {
-                            return product.category === detailProduct.category
-                                ? <ProductItem key={product._id} product={product} /> : null
-                        })
-                    }
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 mb-6">
+                    {products.map((product) => {
+                        return product.category === detailProduct.category ? (
+                            <ProductItem key={product._id} product={product} />
+                        ) : null;
+                    })}
                 </div>
             </div>
             <div className="comments">
@@ -162,21 +157,19 @@ function DetailProduct() {
                 <FormInput id={id} socket={socket} rating={rating} />
 
                 <div className="comments_list">
-                    {
-                        comments.map(comment => (
-                            <CommentItem key={comment._id} comment={comment} socket={socket} />
-                        ))
-                    }
+                    {comments.map((comment) => (
+                        <CommentItem key={comment._id} comment={comment} socket={socket} />
+                    ))}
                 </div>
             </div>
-            {
-                loading && <div className="loading">
+            {loading && (
+                <div className="loading">
                     <img src={Load} alt="" />
                 </div>
-            }
+            )}
             {/* <button ref={pageEnd1} style={{opacity: 0}}>Load more</button> */}
         </div>
-    )
+    );
 }
 
-export default DetailProduct
+export default DetailProduct;

@@ -1,19 +1,19 @@
-import React from 'react'
+import React from 'react';
 
 let rate = 0;
-function Rating({props}) {
-    if(props.numReviews) {
-        rate = 100 - (props.rating / props.numReviews * 18)
-    }else {
-        rate = 100 - (props.rating * 15)
+function Rating({ props, style }) {
+    if (props.numReviews) {
+        rate = 100 - (props.rating / props.numReviews) * 18;
+    } else {
+        rate = 100 - props.rating * 15;
     }
 
     const style_star = {
-        clipPath: props.rating === 0 ? `inset(0 100% 0 0)` : `inset(0 ${rate}% 0 0)`
-    }
+        clipPath: props.rating === 0 ? `inset(0 100% 0 0)` : `inset(0 ${rate}% 0 0)`,
+    };
 
     return (
-        <div className="rating">
+        <div className={`rating ${style ? style : ''}`}>
             <div className="star">
                 <i className="far fa-star"></i>
                 <i className="far fa-star"></i>
@@ -30,7 +30,7 @@ function Rating({props}) {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
-export default Rating
+export default Rating;

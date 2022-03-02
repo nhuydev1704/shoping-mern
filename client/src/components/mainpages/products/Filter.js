@@ -1,62 +1,70 @@
-import React, { useContext } from 'react'
-import { GlobalState } from '../../../GlobalState'
+import React, { useContext } from 'react';
+import { GlobalState } from '../../../GlobalState';
 
 function Filter() {
-    const state = useContext(GlobalState)
-    const [categories] = state.categoriesAPI.categories
+    const state = useContext(GlobalState);
+    const [categories] = state.categoriesAPI.categories;
 
-    const [category, setCategory] = state.productsAPI.category
-    const [sort, setSort] = state.productsAPI.sort
-    const [search, setSearch] = state.productsAPI.search
+    const [category, setCategory] = state.productsAPI.category;
+    const [sort, setSort] = state.productsAPI.sort;
+    const [search, setSearch] = state.productsAPI.search;
+    const [selected, setSelectd] = React.useState('');
     // const [page, setPage] = useState(1)
     // const [result, setResult] = useState(0)
 
+    const handleCategory = (e) => {
+        setCategory(e.target.value);
+        setSearch('');
+    };
 
-    const handleCategory = e => {
-        setCategory(e.target.value)
-        setSearch('')
-    }
     return (
-        <div className="filter_menu">
+        <div className="flex flex-wrap justify-between items-center my-4">
             {/* <span>Fliters: </span> */}
-            <div className="row">
-                <div className="select">
-                    <select name="category" value={category} onChange={handleCategory}>
-                        <option value="">Tất cả sản phẩm</option>
-                        {
-                            categories.map(category => (
-                                <option value={"category=" + category._id} key={category._id}>
-                                    {category.name}
-                                </option>
-                            ))
-                        }
-                    </select>
-                </div>
-            </div>
+            <div className="flex flex-wrap">
+                {categories && categories.length > 0 && (
+                    <div
+                        onClick={() => {
+                            setCategory('');
+                            setSelectd('');
 
-            <div className="row form-style-4">
-                <label htmlFor="field1">
-                    <span></span>
-                    <input type="text" value={search}
-                        onChange={e => setSearch(e.target.value.toLowerCase())}
-                        name="field1" placeholder="Nhập để tìm kiếm"
-                    />
-                </label>
+                            setSearch('');
+                        }}
+                        className={`my-2 hover:opacity-80 border-[1px] cursor-pointer border-red-700 rounded font-bold  min-w-[140px] py-2 text-center text-red-700 mx-4 ${
+                            category === '' ? 'bg-red-700 text-white' : ''
+                        }`}
+                    >
+                        Tất cả sản phẩm
+                    </div>
+                )}
+
+                {categories.map((category) => (
+                    <div
+                        onClick={() => {
+                            setCategory('category=' + category._id);
+                            setSelectd('category=' + category._id);
+                            setSearch('');
+                        }}
+                        className={`my-2 hover:opacity-80 border-[1px] cursor-pointer border-red-700 rounded font-bold  min-w-[140px] py-2 text-center text-red-700 mx-4 ${
+                            'category=' + category._id === selected ? 'bg-red-700 text-white' : ''
+                        }`}
+                    >
+                        {category.name}
+                    </div>
+                ))}
             </div>
-            {/* <span>Sort By: </span> */}
-            <div className="row">
-                <div className="select">
-                    <select value={sort} onChange={e => setSort(e.target.value)}>
-                        <option value="">Mới Nhất</option>
-                        <option value="sort=oldest">Cũ Nhất</option>
-                        <option value="sort=-sold">Bán chạy nhất</option>
-                        <option value="sort=-price">Giá: Cao-Thấp</option>
-                        <option value="sort=price">Price: Thấp-Cao</option>
-                    </select>
-                </div>
-            </div>
+            <select
+                className="bg-white shadow-lg min-w-[200px] border border-red-700 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 "
+                value={sort}
+                onChange={(e) => setSort(e.target.value)}
+            >
+                <option value="">Mới Nhất</option>
+                <option value="sort=oldest">Cũ Nhất</option>
+                <option value="sort=-sold">Bán chạy nhất</option>
+                <option value="sort=-price">Giá: Cao-Thấp</option>
+                <option value="sort=price">Price: Thấp-Cao</option>
+            </select>
         </div>
-    )
+    );
 }
 
-export default Filter
+export default Filter;

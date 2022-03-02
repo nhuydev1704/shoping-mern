@@ -5,7 +5,7 @@ header {
     justify-content: space-around;
     flex-wrap: wrap;
     align-items: center;
-    background-color: rgba(72, 61, 139,.8);
+    background-color: rgba(72, 61, 139, 0.8);
     padding: 0 30px;
 }
 
@@ -25,14 +25,14 @@ header ul li {
     padding: 0 20px;
 }
 
-header ul li:hover{
+header ul li:hover {
     opacity: 1;
 }
 
-header ul li img{
+header ul li img {
     width: 30px;
     height: 30px;
-    transform: translateY(10px);
+    /* transform: translateY(10px); */
     border-radius: 50%;
 }
 
@@ -45,9 +45,9 @@ header ul li img{
     margin-right: 20px;
 }
 .cart-icon span {
-    background-color: crimson;
+    background-color: white;
     border-radius: 20px;
-    color: white;
+    color: crimson;
     position: absolute;
     top: -10px;
     right: -5px;
@@ -56,7 +56,7 @@ header ul li img{
 }
 
 .drop-nav::before {
-    content: "";
+    content: '';
     position: absolute;
     height: 20px;
     width: 100%;
@@ -65,17 +65,15 @@ header ul li img{
     bottom: -10px;
 }
 
-
 /* --------- Dropdown ---------- */
-.drop-nav{
+.drop-nav {
     position: relative;
     padding: 10px 0;
 }
-.drop-nav a{
+.drop-nav a {
     text-transform: capitalize;
-    overflow: hidden;
 }
-.drop-nav .dropdown{
+.drop-nav .dropdown {
     position: absolute;
     background: #282c34;
     width: 100%;
@@ -84,10 +82,10 @@ header ul li img{
     display: none;
     z-index: 400;
 }
-.drop-nav .dropdown li{
+.drop-nav .dropdown li {
     display: block;
     margin: 10px 0;
 }
-.drop-nav:hover .dropdown{
+.drop-nav:hover .dropdown {
     display: block;
 }
